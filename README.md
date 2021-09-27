@@ -58,7 +58,7 @@ changes to your workflow press the "Generate workflow diagram"
 button to re-generate the workflow image to reflect your
 changes/updates.
 
-### 1. View/Edit the Customer Application workflow
+### 2. View/Edit the Customer Application workflow
 
 Check out the Customer Application workflow.
 Note the "MakeApplicationDecision" switch state, here we use 
@@ -67,7 +67,7 @@ JsonPath (default for Serverless Workflow is jq) to define two conditions
 You can play with the age numbers if you want to see different workflow
 execution results.
 
-### 2. Enter workflow data input
+### 3. Enter workflow data input
 
 Our workflow expects some data inputs, namely the customer information
 that is used during workflow execution.
@@ -82,7 +82,7 @@ for example "purchase a laptop".
 
 Press the "Run Workflow" button to start workflow execution.
 
-### 3. Check the Temporal Web UI
+### 4. Check the Temporal Web UI
 
 Check the Temporal Web UI by navigating to:
 
@@ -95,7 +95,7 @@ Check the Temporal Web UI by navigating to:
 You will see your "TemporalServerlessWorkflow" workflow was executed
 completed. You can click on the workflow Run Id link to see execution details.
 
-### 4. Check the workflow execution results
+### 5. Check the workflow execution results
 
 Back on our app page (localhost:8080)
 
