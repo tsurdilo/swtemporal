@@ -106,7 +106,7 @@ Press the "Run Workflow" button to start workflow execution.
 
 Check the Temporal Web UI by navigating to:
 
-    http://localhost:8080
+    http://localhost:8088
 
 <p align="center">
 <img src="docs/demoimg3.png" width="650px"/>
