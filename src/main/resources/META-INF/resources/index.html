@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/sws.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" data-name="vs/editor/editor.main" href="css/editor/editor.main.css"/>
+    <script src="./js/serverlessWorkflowSdk.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.mermaidAPI.initialize({
+            startOnLoad: false
+        });
+    </script>
+    <title>Serverless Workflow Online Editor</title>
+</head>
+
+<body id="page-top">
+<section id="swonlineeditor" style="padding: 100px;">
+    <div class="container">
+        <h2>Online Workflow Editor - Powered by Temporal</h2>
+        <hr class="hr-short"/>
+        <br/>
+        <p class="lead">
+        <h3>1. Define your Workflow</h3>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">
+                            <select id="examples" name="examples" onchange="selectExample(this.value);">
+                                <option value='' selected>Select an existing workflow example</option>
+                                <option value='helloworld'>Hello World Example</option>
+                                <option value='customerapplication'>Customer Application</option>
+                            </select>
+
+                            <select id="theme" name="theme" onchange="changeTheme(this.value);">
+                                <option value='' selected>Change editor color theme</option>
+                                <option value='vs'>Default</option>
+                                <option value='vs-dark'>Dark</option>
+                                <option value='hc-black'>High Contrast Dark</option>
+                            </select>
+                        </p>
+                        <div id="sweditor" style="width: 100%; height: 600px; border: 1px solid grey"></div>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4" style="border: 0px solid">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="#" class="btn btn-primary btn-sm"
+                               onclick="generateDiagram(this.value);return false;">Generate
+                                workflow diagram</a></h5>
+                        <br/><br/>
+                        <div class="workflowdiagram">
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <p class="lead">
+        <h3>2. Run your Workflow</h3>
+        <div class="row">
+            <div class="col-sm-8" style="border: 0px solid">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"/>
+                        <h4>Customer Info (workflow input)</h4><br/>
+                        <form id="customerForm" class="form-vertical" role="form" autocomplete="off" method="POST"
+                              action="/runworkflow">
+                            <fieldset>
+                                <div class="form-group col-xs-12 col-sm-6">
+                                    <label for="firstname" class="control-label">First Name</label>
+                                    <input type="text" class="form-control" name="firstname" id="firstname"
+                                           placeholder="Enter First Name">
+                                </div>
+                                <div class="form-group col-xs-12 col-sm-6">
+                                    <label for="lastname" class="control-lable">Last Name</label>
+                                    <input type="text" class="form-control" name="lastname" id="lastname"
+                                           placeholder="Enter Last Name">
+                                </div>
+                                <div class="form-group col-xs-12 col-sm-6">
+                                    <label for="age" class="control-label">Age</label>
+                                    <input type="text" class="form-control" name="age" id="age"
+                                           placeholder="Customer Age">
+                                </div>
+                                <div class="form-group col-xs-12 col-sm-12">
+                                    <label for="request" class="control-label">Request</label>
+                                    <input type="text" class="form-control" name="request" id="request"
+                                           placeholder="Customer Request">
+                                </div>
+                                <div class="pull-right">
+                                    <br>
+                                    <div class="btn-group col-xs-12">
+
+                                        <button type="button" class="btn btn-primary" id="runWorkflow">Run Workflow</button>
+
+<!--                                        <button type="button" class="btn btn-default" id="sendQueryString">Query-->
+<!--                                            string-->
+<!--                                        </button>-->
+<!--                                        <button type="button" class="btn btn-primary" id="sendSerialized">Serialized-->
+<!--                                            form-->
+<!--                                        </button>-->
+<!--                                        <button type="button" class="btn btn-warning" id="sendPlainJSon">Plain json-->
+<!--                                        </button>-->
+<!--                                        <button type="button" class="btn btn-success" id="sendTreeJSon">Tree json-->
+<!--                                        </button>-->
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4" style="border: 0px solid">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"/>
+                        <h4>Decision (workflow output)</h4><br/>
+                        <div class="container">
+                            <div class="well col-xs-12">
+                                <div class="control-label col-xs-12">
+                                    <label>Decision:</label>
+                                </div>
+                                <div class="col-xs-12">
+                                    <textarea class="form-control" readonly id="decision"></textarea>
+                                    <br>
+                                </div>
+                                <div class="control-label col-xs-12">
+                                    <label>Workflow Result:</label>
+                                </div>
+                                <div class="col-xs-12">
+                                    <textarea class="form-control" readonly
+                                              id="results">Waiting to send request</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script>
+            var require = {paths: {vs: 'min/vs'}};
+        </script>
+        <script src="js/loader.js"></script>
+        <script src="js/editor.main.nls.js"></script>
+        <script src="js/editor.main.js"></script>
+        <script src="js/sweditor.js"></script>
+        <script>
+            var jsonCode = [
+                '{',
+
+                "}"
+            ].join('\n');
+            var modelUri = monaco.Uri.parse("https://raw.githubusercontent.com/serverlessworkflow/specification/0.7.x/schema/workflow.json");
+
+            var model = monaco.editor.createModel(JSON.stringify(helloWorldExample, null, 2), "json", modelUri);
+
+            monaco.languages.json.jsonDefaults.setDiagnosticsOptions({ validate: true, allowComments: false,
+                schemas: [{
+                    uri: "https://raw.githubusercontent.com/serverlessworkflow/specification/0.7.x/schema/workflow.json",
+                    fileMatch: [modelUri.toString()]
+                }], enableSchemaRequest: true});
+
+            monaco.editor.create(document.getElementById("sweditor"), {
+                model: model
+            });
+
+            generateDiagram();
+
+        </script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-mockjax/1.5.3/jquery.mockjax.min.js"></script>
+        <script src="js/wrscript.js"></script>
+        <script src="js/jquery-form-serializer.js"></script>
+</body>
+</html>
