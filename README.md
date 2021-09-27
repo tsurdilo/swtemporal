@@ -8,9 +8,19 @@ where you can easily build an online editor, visualization,
 form-based workflow input and ability to start 
 workflow execution and wait for results.
 
-Obligatory note: this is a demo and not intended for production use.
+Note: this is a demo and not intended for production use.
 The demo integration does not support 100% of the Serverless Workflow
 specification but the intent is that it does soon.
+
+Note: Serverless Workflow specification supports standards-based
+function executions, meaning it supports standards such as OpenApi,
+AsyncApi, GraphQL, etc. For the integration SW functions align
+to invocations of Temporal Activities. Temporal activities 
+are functions where you can add your own code. For this demo
+we did not implement (yet) actual invocation of 3rd party services.
+Currently activities just simulate that work but irl that code
+can be auto-generated using generators from for example OpenApi 
+service definitions.
 
 ## Start the demo app
 
