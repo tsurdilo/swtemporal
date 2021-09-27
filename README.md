@@ -53,8 +53,7 @@ and the MermaidJS library.
 The editor supports auto-completion and validation
 using the [Serverless Workflow workflow Json Schema definition](https://github.com/serverlessworkflow/specification/blob/main/schema/workflow.json).
 
-When you select one of the two pre-defined workflows from the top dropdown 
-the workflow image will auto-generate. If you make some
+If you make some
 changes to your workflow press the "Generate workflow diagram"
 button to re-generate the workflow image to reflect your
 changes/updates.
