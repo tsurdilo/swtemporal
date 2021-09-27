@@ -22,6 +22,26 @@ Currently activities just simulate that work but irl that code
 can be auto-generated using generators from for example OpenApi 
 service definitions.
 
+## About
+
+Demo uses the [Temporal Java SDK](https://github.com/temporalio/sdk-java) to define a dynamic workflow capable
+of executing instructions defined in the [Serverless Workflow DSL](https://github.com/serverlessworkflow/specification/tree/main/schema).
+For that it uses the [Serverless Workflow Java SDK](https://github.com/serverlessworkflow/sdk-java) for validating and 
+parsing the JSON (or yaml can be used too) DSL into an object model before interpreting it.
+
+Note that the same type of demo can be produced 
+for 
+Golang - [Temporal Go SDK](https://github.com/temporalio/sdk-go), [Serverless Workflow Go SDK](https://github.com/serverlessworkflow/sdk-go)
+TypeScript - [Temporal Typescript SDK](https://github.com/temporalio/sdk-node), [Serverless Workflow TypeScript SDK](https://github.com/serverlessworkflow/sdk-typescript)
+
+If you would like to help with this one, or the other mentioned 
+integrations let me know. 
+
+This demo runs on [Quarkus](https://quarkus.io/).
+
+This demo is a work in progress and will be improved over time. The integration 
+can definitely be improved, especially on the passing data between the UI, Quarkus app and Temporal. 
+
 ## Start the demo app
 
 ### 1. Start Temporal Server on Docker
