@@ -1,6 +1,5 @@
 package io.serverlessworkflow.demo.temporal;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.temporal.activity.Activity;
 import io.temporal.activity.DynamicActivity;
@@ -13,8 +12,9 @@ public class TemporalServerlessActivities implements DynamicActivity {
     public Object execute(EncodedValues args) {
         //String activityType = Activity.getExecutionContext().getInfo().getActivityType();
         //JsonNode workflowData = args.get(0, JsonNode.class);
-
         try {
+            // simulate 200 ms "work"
+            Thread.sleep(200);
             return mapper.readTree(
                     getReturnJson(Activity.getExecutionContext().getInfo().getActivityType(), "invoked"));
         } catch (Exception e) {

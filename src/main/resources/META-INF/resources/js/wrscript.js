@@ -9,10 +9,16 @@ $(document).ready(function() {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
-                console.log("Response Data");
-                console.log(response);
+                //console.log("Response Data");
+                //console.log(response);
                 var jsonResult = JSON.stringify(response);
                 $("#results").val(unescape(jsonResult));
+
+                if( response["ApproveApplication"] === undefined ) {
+                    $("#decision").val("Application Rejected");
+                } else {
+                    $("#decision").val("Application Approved");
+                }
             },
             error: function (err) {
                 console.log(err);
@@ -45,21 +51,7 @@ $(document).ready(function() {
         combinedData["workflowdata"] = JSON.stringify(formData);
         combinedData["workflowdsl"] = modelVal;
 
-        console.log(JSON.stringify(combinedData));
-
         ajaxCall(method, url, combinedData);
     });
-
-
-    // $("#defaultData").click(function(event) {
-    //     event.preventDefault();
-    //     $('#firstname').val('Mortadelo');
-    //     $('#lastname').val('Filemon');
-    //     $('#address_street').val('Rua del Percebe 13');
-    //     $('#address_city').val('Madrid');
-    //     $('#address_zip').val('28010');
-    //     $("[name='emails[0]']").val('superintendencia@cia.es');
-    // });
-
 });
 

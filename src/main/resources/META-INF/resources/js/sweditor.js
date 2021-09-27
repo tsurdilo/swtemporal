@@ -1,22 +1,3 @@
-var helloWorldExample = {
-    "id": "helloworld",
-    "version": "1.0",
-    "specVersion": "0.7",
-    "name": "Hello World Workflow",
-    "description": "Inject Hello World",
-    "start": "Hello State",
-    "states":[
-      {
-         "name":"Hello State",
-         "type":"inject",
-         "data": {
-            "result": "Hello World!"
-         },
-         "end": true
-      }
-    ]
-}
-
 var customerApplication = {
     "id": "customerapplication",
     "name": "Customer Application Workflow",
@@ -505,13 +486,7 @@ var vetAppointmentExample = {
 };
 
 var examplesMap = {};
-examplesMap['helloworld'] = helloWorldExample;
 examplesMap['customerapplication'] = customerApplication;
-examplesMap['parallelexecution'] = parallelStateExample;
-examplesMap['eventbaseddecisions'] = eventBasedSwitchState;
-examplesMap['provisionorders'] = provisionOrdersExample;
-examplesMap['monitorjobs'] = monitorJobsExample;
-examplesMap['vetappointment'] = vetAppointmentExample;
 
 function selectExample(value) {
     if(value.length > 0) {

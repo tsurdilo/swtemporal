@@ -34,7 +34,6 @@
                         <p class="card-title">
                             <select id="examples" name="examples" onchange="selectExample(this.value);">
                                 <option value='' selected>Select an existing workflow example</option>
-                                <option value='helloworld'>Hello World Example</option>
                                 <option value='customerapplication'>Customer Application</option>
                             </select>
 
@@ -57,7 +56,6 @@
                             <a href="#" class="btn btn-primary btn-sm"
                                onclick="generateDiagram(this.value);return false;">Generate
                                 workflow diagram</a></h5>
-                        <br/><br/>
                         <div class="workflowdiagram">
                             <br/>
                         </div>
@@ -102,18 +100,19 @@
                                     <br>
                                     <div class="btn-group col-xs-12">
 
-                                        <button type="button" class="btn btn-primary" id="runWorkflow">Run Workflow</button>
+                                        <button type="button" class="btn btn-primary" id="runWorkflow">Run Workflow
+                                        </button>
 
-<!--                                        <button type="button" class="btn btn-default" id="sendQueryString">Query-->
-<!--                                            string-->
-<!--                                        </button>-->
-<!--                                        <button type="button" class="btn btn-primary" id="sendSerialized">Serialized-->
-<!--                                            form-->
-<!--                                        </button>-->
-<!--                                        <button type="button" class="btn btn-warning" id="sendPlainJSon">Plain json-->
-<!--                                        </button>-->
-<!--                                        <button type="button" class="btn btn-success" id="sendTreeJSon">Tree json-->
-<!--                                        </button>-->
+                                        <!--                                        <button type="button" class="btn btn-default" id="sendQueryString">Query-->
+                                        <!--                                            string-->
+                                        <!--                                        </button>-->
+                                        <!--                                        <button type="button" class="btn btn-primary" id="sendSerialized">Serialized-->
+                                        <!--                                            form-->
+                                        <!--                                        </button>-->
+                                        <!--                                        <button type="button" class="btn btn-warning" id="sendPlainJSon">Plain json-->
+                                        <!--                                        </button>-->
+                                        <!--                                        <button type="button" class="btn btn-success" id="sendTreeJSon">Tree json-->
+                                        <!--                                        </button>-->
                                     </div>
                                 </div>
                             </fieldset>
@@ -165,13 +164,15 @@
             ].join('\n');
             var modelUri = monaco.Uri.parse("https://raw.githubusercontent.com/serverlessworkflow/specification/0.7.x/schema/workflow.json");
 
-            var model = monaco.editor.createModel(JSON.stringify(helloWorldExample, null, 2), "json", modelUri);
+            var model = monaco.editor.createModel(JSON.stringify(customerApplication, null, 2), "json", modelUri);
 
-            monaco.languages.json.jsonDefaults.setDiagnosticsOptions({ validate: true, allowComments: false,
+            monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+                validate: true, allowComments: false,
                 schemas: [{
                     uri: "https://raw.githubusercontent.com/serverlessworkflow/specification/0.7.x/schema/workflow.json",
                     fileMatch: [modelUri.toString()]
-                }], enableSchemaRequest: true});
+                }], enableSchemaRequest: true
+            });
 
             monaco.editor.create(document.getElementById("sweditor"), {
                 model: model
