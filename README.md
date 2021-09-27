@@ -5,12 +5,12 @@ with [Temporal](https://temporal.io/)
 
 It also shows the Serverless Workflow project experience,
 where you can easily build an online editor, visualization,
-form-based workflow input and ability to start 
+form-based workflow data inputs and ability to start 
 workflow execution and wait for results.
 
 Note: this is a demo and not intended for production use.
 The demo integration does not support 100% of the Serverless Workflow
-specification but the intent is that it does soon.
+specification, but the intent is that it does soon.
 
 Note: Serverless Workflow specification supports standards-based
 function executions, meaning it supports standards such as OpenApi,
