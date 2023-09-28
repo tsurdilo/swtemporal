@@ -48,7 +48,7 @@ can definitely be improved, especially on the passing data between the UI, Quark
 
     git clone https://github.com/temporalio/docker-compose.git
     cd  docker-compose
-    docker-compose -f docker-compose-cas-es.yml up
+    docker-compose -f docker-compose-cass-es.yml up
 
 ### 2. Start the demo app (Quarkus dev mode)
 
